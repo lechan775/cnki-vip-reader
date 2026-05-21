@@ -1,14 +1,17 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/OpenHanako-Skill-6c5ce7?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiBmaWxsPSIjNmM1Y2U3Ii8+PHRleHQgeD0iMTIiIHk9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWTpjwvdGV4dD48L3N2Zz4=">
-  <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/badge/OpenHanako-Skill-6c5ce7?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiBmaWxsPSIjNmM1Y2U3Ii8+PHRleHQgeD0iMTIiIHk9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWTpjwvdGV4dD48L3N2Zz4=">
-  <img alt="OpenHanako Skill" src="https://img.shields.io/badge/OpenHanako-Skill-6c5ce7?style=for-the-badge">
-</picture>
+[🇬🇧 English](README.md) | [🇨🇳 简体中文](README.zh-CN.md) | [🇯🇵 日本語](README.ja.md) | [🇰🇷 한국어](README.ko.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![Platform: OpenHanako](https://img.shields.io/badge/Platform-OpenHanako-6c5ce7)](https://github.com/liliMozi/openhanako)
+<br>
+
+<img src="assets/social-preview.png" alt="CNKI-VIP Reader" width="640">
+
+<br>
+
+[![AI Agent Skill](https://img.shields.io/badge/AI_Agent-Skill-6c5ce7?style=for-the-badge)](https://github.com/lechan775/cnki-vip-reader)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge)](https://www.python.org/)
+[![Compatible: Any Agent](https://img.shields.io/badge/Compatible-Any_Agent-2ea44f?style=for-the-badge)](https://github.com/lechan775/cnki-vip-reader)
 
 </div>
 
@@ -16,161 +19,169 @@
 
 # CNKI-VIP Reader
 
-中文文献自动检索与阅读 Skill —— 基于 OpenHanako 平台的知网/维普学术论文全流程 Agent。
+**Chinese Academic Literature Auto-Search & Reader Skill for AI Agents**
 
-`cnki-vip-reader` 使 AI Agent 能够**自动登录**中文文献中转平台、**批量检索**知网与维普、**下载 PDF 全文**并**结构化阅读**。针对知网 PDF 专有字体编码乱码问题，内置**多模态视觉回退**机制，通过临时视觉子 Agent 截图识别，彻底绕过传统 OCR 限制。
+`cnki-vip-reader` empowers any AI agent to **automatically log in** to Chinese literature relay platforms, **batch search** CNKI (知网) and VIP (维普), **download full-text PDFs**, and **read them structurally**. For CNKI's proprietary PDF font encoding corruption, a built-in **multimodal visual fallback** mechanism delegates screenshot recognition to a vision-capable sub-agent, completely bypassing traditional OCR limitations.
 
-## 📄 文档
+### 🎯 Runs on Any Agent Platform
+
+This Skill is written as a platform-agnostic workflow specification. It works wherever your agent has access to a **browser** tool (Playwright/Puppeteer) and a **bash/shell** tool:
+
+| Platform | Status |
+|----------|--------|
+| **OpenHanako** | ✅ Full support — `browser` + `bash` + `subagent` |
+| **Claude Code** | ✅ `bash` tool + custom Playwright MCP |
+| **Codex / Hana** | ✅ `browser` + `bash` + `subagent` |
+| **Custom MCP Agent** | ✅ Any agent with browser automation capability |
+| **LangChain / CrewAI** | ✅ Adapt the SKILL.md to your agent's tool definitions |
+
+> **The core workflow lives in `SKILL.md` — a human-and-machine-readable instruction file.** You adapt the tool invocations (`browser start`, `bash`, `web_search`) to whatever your agent platform calls them.
+
+## 📄 Documentation
 
 <details open>
-<summary>快速开始</summary>
+<summary>Quick Start</summary>
 
-### 安装
-
-将本仓库克隆到 OpenHanako 的 skills 目录：
-
-```bash
-# 克隆到全局技能库
-git clone https://github.com/lechan775/cnki-vip-reader \
-  ~/.hanako/skills/cnki-vip-reader
-
-# 或手动复制到 OpenHanako 的 skill 目录
-cp -r cnki-vip-reader/ ~/.hanako/skills/
-```
-
-安装 Python 依赖：
+### Install Dependencies
 
 ```bash
 pip install playwright
 playwright install chromium
 ```
 
-### 配置
+### Configure
 
 ```bash
-# 复制配置文件
 cp config.example.json config.json
-
-# 编辑配置，填入中转平台凭据
-{
-    "username": "your_account",
-    "password": "your_password"
-}
+# Edit config.json with your relay platform credentials
 ```
 
-也可通过环境变量设置：
+Or via environment variables:
 
 ```bash
 export RELAY_USERNAME="your_account"
 export RELAY_PASSWORD="your_password"
 ```
 
-### 使用
+### Give the Skill to Your Agent
 
-在 OpenHanako 对话中直接说：
-
-```
-「知网搜一下 Transformer 注意力机制」
-「维普检索 轻量化人脸识别」
-「下载选中的第 1、3、5 篇」
+**OpenHanako** — copy to skills directory:
+```bash
+cp -r cnki-vip-reader/ ~/.hanako/skills/
 ```
 
-Agent 会自动触发 Skill，执行检索→下载→阅读全流程。
+**Claude Code** — add to CLAUDE.md or as a project skill:
+```bash
+# Reference SKILL.md as a custom instruction file
+claude --custom-instructions ./SKILL.md
+```
+
+**Custom Agent** — feed SKILL.md into your agent's system prompt or tool context.
+
+### Usage
+
+Talk to your agent naturally:
+
+```
+"Search CNKI for Transformer attention mechanisms"
+"Search VIP for lightweight face recognition"
+"Download paper #1, #3, and #5"
+```
+
+The agent reads SKILL.md and executes the workflow automatically.
 
 </details>
 
-## ✨ 特性
+## ✨ Features
 
-| 特性 | 说明 |
-|------|------|
-| 🔍 **双库检索** | 同时检索知网 (CNKI) 和维普 (VIP)，输出结构化题录 |
-| 📥 **无弹窗下载** | Playwright 脚本自动 cookie 注入，绕过下载弹窗确认 |
-| 📖 **全文阅读** | 集成 `nature-reader` 中英对照解读、`office-documents` 文本提取 |
-| 🖼️ **多模态回退** | 知网 PDF 乱码时自动截图 → 视觉子 Agent 识别，无需手动转换 |
-| 🔐 **Cookie 复用** | 登录一次即可，后续操作跳过验证码 |
-| ⚡ **代理模式** | 通过第三方文献云中转，无需机构 VPN |
+| Feature | Description |
+|---------|-------------|
+| 🔍 **Dual-Database Search** | Simultaneously search CNKI & VIP, output structured bibliographies |
+| 📥 **No-Popup Download** | Playwright script with cookie injection, bypasses download confirmations |
+| 📖 **Full-Text Reading** | Structured reading with side-by-side translation support |
+| 🖼️ **Multimodal Fallback** | Screenshots → vision sub-agent recognition when CNKI fonts corrupt text extraction |
+| 🔐 **Cookie Reuse** | Log in once, skip CAPTCHAs on subsequent operations |
+| ⚡ **Relay Mode** | Works through a third-party relay, no institutional VPN required |
+| 🌐 **Platform Agnostic** | Runs on OpenHanako, Claude, Codex, or any agent with browser + shell tools |
 
-## 🏗️ 架构
+## 🏗️ Architecture
 
 ```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   OpenHanako  │────▶│  cnki-vip-   │────▶│  文献云中转   │
-│   Agent       │◀────│  reader      │◀────│  (自部署)     │
-└──────────────┘     └──────┬───────┘     └──────────────┘
-                            │
-                   ┌────────▼────────┐
-                   │  Playwright     │
-                   │  无头浏览器下载  │
-                   └────────┬────────┘
-                            │
-              ┌─────────────┼─────────────┐
-              ▼             ▼             ▼
-         ┌────────┐  ┌──────────┐  ┌──────────┐
-         │ 知网CAJ │  │ 维普 PDF │  │ 截图回退  │
-         └────┬───┘  └────┬─────┘  └────┬─────┘
-              │            │             │
-              ▼            ▼             ▼
-         ┌──────────────────────────────────┐
-         │  nature-reader / office-documents │
-         │  结构化全文解读                    │
-         └──────────────────────────────────┘
+┌──────────────────┐     ┌──────────────┐     ┌──────────────┐
+│  Any AI Agent    │────▶│  cnki-vip-   │────▶│  Literature   │
+│  (OpenHanako/    │◀────│  reader      │◀────│  Relay (BYO)  │
+│   Claude/Codex)  │     └──────┬───────┘     └──────────────┘
+└──────────────────┘            │
+                   ┌────────────▼────────────┐
+                   │  Playwright Headless     │
+                   │  Browser (download PDF)  │
+                   └────────────┬────────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              ▼                 ▼                 ▼
+         ┌────────┐      ┌──────────┐      ┌──────────┐
+         │CNKI CAJ│      │ VIP PDF  │      │Screenshot│
+         │  Download│     │ Download │      │ Fallback │
+         └────┬───┘      └────┬─────┘      └────┬─────┘
+              │                │                  │
+              ▼                ▼                  ▼
+         ┌──────────────────────────────────────────┐
+         │  Structured Full-Text Reading & Analysis  │
+         └──────────────────────────────────────────┘
 ```
 
-## 🚀 工作流
+## 🚀 Workflow
 
-### 阶段 1: 登录中转平台
-Agent 自动填入凭据 → OCR 识别验证码 → Cookie 持久化
+| Phase | Action |
+|-------|--------|
+| **1. Login** | Agent auto-fills credentials → OCR CAPTCHA → cookie persistence |
+| **2A. CNKI Search** | Navigate to CNKI proxy → keyword search → bibliography extraction → download |
+| **2B. VIP Search** (recommended) | Navigate to VIP → CARSI auth → search → PDF download |
+| **3. Reading** | PDF extracted → structured full-text interpretation |
+| **4. Fallback** | CNKI font corruption → screenshot per page → vision sub-agent OCR → merge to `.md` |
 
-### 阶段 2A: 知网检索
-进入知网代理 → 关键词搜索 → 题录提取 → CAJ/PDF 下载
+## 📊 Supported Platforms & Methods
 
-### 阶段 2B: 维普检索 (推荐)
-进入维普 → CARSI 认证 → 搜索 → PDF 全文下载
+| Platform | Search | Bibliography | PDF | CAJ | Corruption Fix |
+|----------|:------:|:------------:|:---:|:---:|----------------|
+| **VIP (维普)** | ✅ | ✅ | ✅ Playwright | N/A | N/A (standard PDF) |
+| **CNKI (知网)** | ✅ | ✅ | ⚠️ corrupted | ✅ | Phase 4: screenshot + vision |
 
-### 阶段 3: 阅读
-PDF 到位后自动调用 `nature-reader` → 中英对照全文解读
+## ⚠️ Prerequisites
 
-### 阶段 4: 多模态回退 (知网乱码专用)
-```
-PDF 截图 → subagent wujie (GPT-5.5 视觉) → 逐页文字识别 → 汇总 .md
-```
+> **This repository does NOT include the relay platform itself.** You must deploy or obtain a literature relay that supports:
+> - CNKI reverse-proxy to search interface
+> - VIP CARSI institutional authentication
+> - User login & cookie management
 
-## 📊 支持平台与方法
+After deployment, replace `YOUR_RELAY_HOST`, `YOUR_CNKI_PROXY` and other placeholders in `SKILL.md` with your actual addresses.
 
-| 平台 | 检索 | 题录 | PDF下载 | CAJ下载 | 乱码方案 |
-|------|:----:|:----:|:------:|:------:|----------|
-| **维普 (VIP)** | ✅ | ✅ | ✅ (Playwright) | N/A | N/A (标准PDF) |
-| **知网 (CNKI)** | ✅ | ✅ | ⚠️ 乱码 | ✅ | 阶段4 截图+视觉识别 |
-
-## ⚠️ 前置要求
-
-> **本仓库不包含文献云中转平台本身。** 您需要自建或获取一个类似「文献云」的中转平台，该平台需支持：
-> - 知网代理（反向代理到知网搜索界面）
-> - 维普 CARSI 机构认证
-> - 用户登录与 cookie 管理
-
-部署后将 SKILL.md 中的 `YOUR_RELAY_HOST`、`YOUR_CNKI_PROXY` 等占位符替换为实际地址。
-
-## 📦 文件结构
+## 📦 File Structure
 
 ```
 cnki-vip-reader/
-├── README.md                     ← 本文件
-├── SKILL.md                      ← Skill 核心工作流定义
+├── README.md                     ← This file (English)
+├── README.zh-CN.md               ← 简体中文
+├── README.ja.md                  ← 日本語
+├── README.ko.md                  ← 한국어
+├── SKILL.md                      ← Core workflow specification
 ├── LICENSE                       ← MIT License
+├── assets/
+│   └── social-preview.png        ← Repository cover image
 ├── .gitignore
-├── config.example.json           ← 凭据配置模板
+├── config.example.json           ← Credentials template
 └── scripts/
-    └── download_vip_pdf.py       ← 无弹窗 PDF/CAJ 下载脚本
+    └── download_vip_pdf.py       ← No-popup PDF/CAJ download script
 ```
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request。
+Issues and PRs welcome.
 
-- 报告 Bug → [GitHub Issues](https://github.com/lechan775/cnki-vip-reader/issues)
-- 贡献代码 → Fork → Feature Branch → PR
-- 分享您的中转平台适配配置
+- Report bugs → [GitHub Issues](https://github.com/lechan775/cnki-vip-reader/issues)
+- Contribute code → Fork → Feature Branch → PR
+- Share your relay platform adapters
+- Help translate README to more languages
 
 ## 📄 License
 

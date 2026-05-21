@@ -1,6 +1,6 @@
 # CNKI-VIP Reader — 知网/维普中文文献自动检索与阅读
 
-面向 OpenHanako 平台的可移植 Skill。使 Agent 能够通过第三方中转平台自动登录、检索、下载和阅读知网与维普的中文学术文献。
+平台无关的 AI Agent Skill。适用于 OpenHanako、Claude Code、Codex、Hana、或任何具备浏览器自动化能力（Playwright/Puppeteer）及 Shell 执行能力的智能体平台。使 Agent 能够通过第三方中转平台自动登录、检索、下载和阅读知网与维普的中文学术文献。
 
 ## 触发条件
 
