@@ -1,0 +1,7 @@
+{
+    "_comment": "文献云中转平台登录凭据",
+    "_usage": "复制此文件为 config.json，填入你的账号密码",
+    "_security": "请勿将 config.json 提交到 Git 仓库",
+    "username": "your_account_here",
+    "password": "your_password_here"
+}
