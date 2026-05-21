@@ -77,6 +77,13 @@ claude --custom-instructions ./SKILL.md
 "논문 1, 3, 5번 다운로드"
 ```
 
+## 📬 문의
+
+설정 중 문제가 발생하면 QQ로 연락해 주세요:
+
+- **QQ**: 3297767619
+- **닉네임**: unique&williams
+
 ## 📄 License
 
 MIT © 2025 Guowei Jiang ([@lechan775](https://github.com/lechan775))

@@ -182,6 +182,13 @@ cnki-vip-reader/
 - 分享你的中转平台适配配置
 - 帮助翻译 README 到更多语言
 
+## 📬 联系方式
+
+配置过程中遇到问题，可以通过 QQ 联系：
+
+- **QQ**: 3297767619
+- **昵称**: unique&williams
+
 ## 📄 License
 
 MIT © 2025 Guowei Jiang ([@lechan775](https://github.com/lechan775))

@@ -183,6 +183,13 @@ Issues and PRs welcome.
 - Share your relay platform adapters
 - Help translate README to more languages
 
+## 📬 Contact
+
+If you encounter configuration issues, feel free to reach out via QQ:
+
+- **QQ**: 3297767619
+- **Nickname**: unique&williams
+
 ## 📄 License
 
 MIT © 2025 Guowei Jiang ([@lechan775](https://github.com/lechan775))
